@@ -109,9 +109,4 @@ python main.py
 Se abrirá la ventana de la Rocola. Empieza en la pestaña "Descubrir",
 elige un género y dale "Descubrir".
 
-## Nota sobre lo comercial
 
-Igual que en la conversación anterior: si esta rocola va a usarse en un
-negocio con público pagando (no solo para ti), retoma la conversación sobre
-licencias de música (SACM u otro esquema de licenciamiento comercial) —
-aplica sin importar qué tan bien construida esté la app.
