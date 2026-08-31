@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header><h1>Rocola</h1></header>
+
+<nav class="tabs">
+  <button id="tabDiscover" class="active">🔀 Descubrir</button>
+  <button id="tabQueue">🎶 Mi Rocola (<span id="queueCount">0</span>)</button>
+</nav>
+
+<main>
+  <!-- ===================== DESCUBRIR ===================== -->
+  <section id="viewDiscover" class="view active">
+    <div class="genre-bar">
+      <select id="genreSelect">
+        <option>Rock</option><option>Pop</option><option>Reguetón</option><option>Salsa</option>
+        <option>Cumbia</option><option>Jazz</option><option>Electrónica</option><option>Hip Hop</option>
+        <option>Balada</option><option>Rancheras</option><option>Bachata</option><option>Merengue</option>
+        <option>Metal</option><option>Indie</option><option>Trap</option><option>Vallenato</option>
+      </select>
+      <button id="discoverBtn">Descubrir</button>
+    </div>
+    <div class="genre-bar">
+      <label class="mini-label">Cantidad:</label>
+      <input type="number" id="randomCount" min="1" max="10" value="5" class="count-input">
+      <button id="randomBtn" class="secondary">🎲 Lista aleatoria</button>
+    </div>
+    <p class="status-msg" id="statusMsg"></p>
+
+    <div class="deck-wrap" id="deckWrap">
+      <div class="deck-empty" id="deckEmpty">Elige un género y dale "Descubrir" para empezar a escuchar candidatos.</div>
+    </div>
+
+    <p class="preview-note" id="previewNote"></p>
+    <div class="swipe-actions">
+      <button class="nope" id="skipBtn" title="Pasar">✕</button>
+      <button class="undo" id="undoBtn" title="Deshacer">↩</button>
+      <button class="like" id="likeBtn" title="Agregar">❤</button>
+    </div>
+    <p class="hint">Arrastra la tarjeta, o ← pasar · → agregar · ↑ deshacer · espacio pausar</p>
+  </section>
+
+  <!-- ===================== MI ROCOLA ===================== -->
+  <section id="viewQueue" class="view">
+    <div class="now-playing">
+      <div class="code-badge" id="npCode">— —</div>
+      <h2 id="npTitle">Nada sonando todavía</h2>
+      <div class="author" id="npAuthor">Agrega canciones desde "Descubrir"</div>
+    </div>
+
+    <div class="progress-row">
+      <span class="time" id="curTime">0:00</span>
+      <div class="progress-track" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="time" id="durTime">0:00</span>
+    </div>
+
+    <div class="controls">
+      <button class="toggle" id="shuffleBtn" title="Aleatorio">🔀</button>
+      <button class="btn-circle" id="prevBtn" title="Anterior">⏮</button>
+      <button class="btn-circle main" id="playBtn" title="Reproducir">▶</button>
+      <button class="btn-circle" id="nextBtn" title="Siguiente">⏭</button>
+      <button class="toggle" id="repeatBtn" title="Repetir">🔁</button>
+    </div>
+    <div class="volume-row">
+      <span class="volume-icon">🔊</span>
+      <input type="range" id="volume" min="0" max="100" value="70">
+    </div>
+
+    <div class="add-row">
+      <input type="text" id="urlInput" placeholder="Pega un enlace de YouTube…">
+      <button id="addBtn">Agregar</button>
+    </div>
+
+    <div class="queue-header"><span>Cola</span><div class="line"></div></div>
+    <div class="queue" id="queue"><div class="empty" id="emptyMsg">Tu rocola está vacía todavía.</div></div>
+  </section>
+</main>
+
+<div id="yt-player-holder"><div id="ytplayer"></div></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="app.js"></script>
+</body>
+</html>
