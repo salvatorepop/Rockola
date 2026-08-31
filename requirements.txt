@@ -1,0 +1,6 @@
+yt-dlp
+pygame-ce
+pywebview
+Pillow
+requests
+numpy

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Rocola</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="slide-container" id="slideContainer">
+
+  <!-- ════════════════════════════════════════
+       PÁGINA 1 — ROCOLA
+       ════════════════════════════════════════ -->
+  <div class="page page-rocola">
+
+    <!-- Header full-width con canvas de luces -->
+    <header>
+      <canvas id="headerCanvas"></canvas>
+    </header>
+
+    <!-- Zona de vinilos — protagonista -->
+    <div class="vinyl-zone">
+      <div class="vinyl-showcase">
+        <canvas id="vinylCanvas"></canvas>
+      </div>
+
+      <div class="now-playing">
+        <span class="code-badge" id="npCode">— —</span>
+        <h2 id="npTitle">Nada sonando todavía</h2>
+        <p class="author" id="npAuthor">Busca canciones abajo o ve a Descubrir →</p>
+      </div>
+
+      <div class="progress-row">
+        <span class="time" id="curTime">0:00</span>
+        <div class="progress-track" id="progressTrack">
+          <div class="progress-fill"  id="progressFill"></div>
+          <div class="progress-knob"  id="progressKnob"></div>
+        </div>
+        <span class="time" id="durTime">0:00</span>
+      </div>
+
+      <div class="controls">
+        <button class="btn-circle toggle" id="shuffleBtn" title="Aleatorio">🔀</button>
+        <button class="btn-circle"      id="prevBtn">⏮</button>
+        <button class="btn-circle main" id="playBtn">▶</button>
+        <button class="btn-circle"      id="nextBtn">⏭</button>
+        <button class="btn-circle toggle" id="repeatBtn" title="Repetir">🔁</button>
+      </div>
+
+      <div class="volume-row">
+        <span>🔈</span>
+        <input type="range" id="volume" min="0" max="100" value="70">
+        <span>🔊</span>
+      </div>
+    </div><!-- /vinyl-zone -->
+
+    <!-- Separador -->
+    <div class="divider"></div>
+
+    <!-- Zona inferior: búsqueda rápida + playlist -->
+    <div class="bottom-zone">
+
+      <!-- Búsqueda rápida -->
+      <div class="quick-search-row">
+        <input  id="quickInput"  type="text" placeholder="Buscar canción...">
+        <button id="quickBtn">BUSCAR</button>
+      </div>
+      <p class="quick-status" id="quickStatus"></p>
+      <div class="quick-results" id="quickResults"></div>
+
+      <!-- Playlist -->
+      <div class="queue-header" style="margin-top:4px">
+        <span>MI LISTA</span><div class="hline"></div>
+        <span class="badge" id="queueCount">0</span>
+      </div>
+      <div class="queue" id="queue">
+        <div class="empty">Tu rocola está vacía. Busca canciones arriba o ve a Descubrir →</div>
+      </div>
+
+    </div><!-- /bottom-zone -->
+
+    <!-- Flecha Descubrir -->
+    <button class="slide-arrow right" id="arrowToDiscover">
+      <span>DESCUBRIR</span><span class="ai">›</span>
+    </button>
+
+  </div><!-- /page-rocola -->
+
+
+  <!-- ════════════════════════════════════════
+       PÁGINA 2 — DESCUBRIR
+       ════════════════════════════════════════ -->
+  <div class="page page-discover">
+
+    <button class="slide-arrow left" id="arrowToRocola">
+      <span class="ai">‹</span><span>ROCOLA</span>
+    </button>
+
+    <div class="discover-layout">
+
+      <!-- Izquierda: búsqueda + swipe + géneros -->
+      <div class="discover-left">
+
+        <h2 class="discover-title">Descubrir</h2>
+
+        <div class="search-bar">
+          <input id="searchInput" type="text" placeholder="Buscar canción o artista...">
+          <button id="searchBtn">BUSCAR</button>
+        </div>
+
+        <nav class="tabs">
+          <button id="tabDiscover" class="active">🔀 Descubrir</button>
+          <button id="tabResults">🔍 Resultados</button>
+          <button id="tabGenre">🎸 Géneros</button>
+        </nav>
+
+        <!-- Swipe -->
+        <div id="viewDiscover" class="view active">
+          <p class="status-msg" id="statusMsg"></p>
+          <div class="deck-wrap" id="deckWrap">
+            <div class="deck-empty">Busca algo o elige un género.</div>
+          </div>
+          <div class="swipe-actions">
+            <button class="nope" id="skipBtn">✕</button>
+            <button class="undo" id="undoBtn">↩</button>
+            <button class="like" id="likeBtn">❤</button>
+          </div>
+          <p class="hint">← pasar · → agregar · ↑ deshacer</p>
+        </div>
+
+        <!-- Resultados búsqueda -->
+        <div id="viewResults" class="view">
+          <div class="results-list" id="resultsList"></div>
+        </div>
+
+        <!-- Géneros -->
+        <div id="viewGenre" class="view">
+          <div class="genre-grid">
+            <button class="genre-btn" data-genre="Rock">🎸 Rock</button>
+            <button class="genre-btn" data-genre="Pop">🎤 Pop</button>
+            <button class="genre-btn" data-genre="Reguetón">🔥 Reguetón</button>
+            <button class="genre-btn" data-genre="Salsa">💃 Salsa</button>
+            <button class="genre-btn" data-genre="Jazz">🎷 Jazz</button>
+            <button class="genre-btn" data-genre="Electrónica">🎧 Electrónica</button>
+            <button class="genre-btn" data-genre="Hip Hop">🎤 Hip Hop</button>
+            <button class="genre-btn" data-genre="Cumbia">🥁 Cumbia</button>
+            <button class="genre-btn" data-genre="Metal">🤘 Metal</button>
+            <button class="genre-btn" data-genre="Indie">🎵 Indie</button>
+            <button class="genre-btn" data-genre="Balada">🌹 Balada</button>
+            <button class="genre-btn" data-genre="Trap">🎯 Trap</button>
+            <button class="genre-btn" data-genre="Rancheras">🤠 Rancheras</button>
+            <button class="genre-btn" data-genre="Bachata">🌴 Bachata</button>
+            <button class="genre-btn" data-genre="80s hits">📼 80s</button>
+            <button class="genre-btn" data-genre="Vallenato">🪗 Vallenato</button>
+          </div>
+          <p class="genre-hint" id="genreStatus">Elige un género</p>
+        </div>
+
+      </div><!-- /discover-left -->
+
+      <!-- Derecha: mini lista -->
+      <div class="discover-right">
+        <div class="queue-header">
+          <span>AGREGADAS</span><div class="hline"></div>
+          <span class="badge" id="discoverCount">0</span>
+        </div>
+        <div class="queue discover-queue" id="discoverQueue">
+          <div class="empty">Aquí aparecen las canciones que agregas.</div>
+        </div>
+      </div>
+
+    </div><!-- /discover-layout -->
+  </div><!-- /page-discover -->
+
+</div><!-- /slide-container -->
+<script src="app.js"></script>
+</body>
+</html>
